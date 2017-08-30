@@ -39,10 +39,15 @@ You can also right click a single image and only optimize that one.
 ## Recommended Apps
 
 #### Mac
+
 - [ImageOptim](https://imageoptim.com/mac): Removes bloated metadata. Saves disk space & bandwidth by compressing images without losing quality.
+
 #### Windows
+
 _Contact me if you have an app to suggest for this section._
+
 #### Linux
+
 _Contact me if you have an app to suggest for this section._
 
 ## Demo
