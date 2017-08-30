@@ -1,0 +1,144 @@
+{
+  "name": "vscode-optimize-images",
+  "displayName": "Optimize Images",
+  "description": "Optimize one or all the images in your project using your favorite app.",
+  "icon": "resources/logo-128x128.png",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "out/src/extension.js",
+  "publisher": "fabiospampinato",
+  "activationEvents": [
+    "onCommand:optimizeImages.optimize",
+    "onCommand:optimizeImages.optimizeFile"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "image",
+        "aliases": [
+          "Image"
+        ],
+        "extensions": [
+          ".gif",
+          ".jpg",
+          ".jpeg",
+          ".png"
+        ]
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Optimize Images - Configuration",
+      "properties": {
+        "optimizeImages.app": {
+          "type": "string",
+          "description": "Name of the app to use for optimizating the images",
+          "default": ""
+        },
+        "optimizeImages.imageRegex": {
+          "type": "string",
+          "description": "Regex used for matching images",
+          "default": ".*\\.(png|gif|jpe?g)$"
+        },
+        "optimizeImages.searchDepth": {
+          "type": "number",
+          "description": "Maximum depth to look at when searching images",
+          "default": 10
+        },
+        "optimizeImages.searchStartingPath": {
+          "type": "string",
+          "description": "Path relative to the root where to start searching images",
+          "default": "."
+        },
+        "optimizeImages.searchIgnoreFolders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Ignore these folders when searching images",
+          "default": [
+            ".git",
+            ".svn",
+            "bower_components",
+            "node_modules",
+            "typings"
+          ]
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "optimizeImages.optimize",
+        "title": "Optimize Images: Optimize All"
+      },
+      {
+        "command": "optimizeImages.optimizeFile",
+        "title": "Optimize Image"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "optimizeImages.optimizeFile",
+          "when": "false"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "optimizeImages.optimizeFile",
+          "group": "optimization",
+          "when": "resourceLangId == image"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "optimizeImages.optimizeFile",
+          "group": "optimization",
+          "when": "resourceLangId == image"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "publish": "vsce publish && npm publish",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "bugs": {
+    "url": "https://github.com/fabiospampinato/vscode-optimize-images/issues"
+  },
+  "author": {
+    "name": "Fabio Spampinato",
+    "email": "spampinabio@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fabiospampinato/vscode-optimize-images.git"
+  },
+  "engines": {
+    "vscode": "^1.15.0"
+  },
+  "keywords": [
+    "vscode",
+    "vsc",
+    "extension",
+    "optimize",
+    "images"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "open": "0.0.5",
+    "walker": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.40",
+    "tslint": "^4.4.2",
+    "typescript": "~2.2.0",
+    "vscode": "^1.1.4"
+  }
+}
