@@ -4,6 +4,7 @@
 import * as _ from 'lodash';
 import * as openPath from 'open';
 import * as path from 'path';
+import * as pify from 'pify';
 import * as vscode from 'vscode';
 import * as walker from 'walker';
 import Config from './config';
@@ -68,7 +69,7 @@ function optimizeFile ( file ) {
 
 }
 
-function optimizePaths ( paths ) {
+async function optimizePaths ( paths ) {
 
   const config = Config.get ();
 
@@ -76,7 +77,13 @@ function optimizePaths ( paths ) {
 
   if ( config.app ) {
 
-    paths.forEach ( path => openPath ( path, config.app ) );
+    const open = pify ( openPath );
+
+    for ( let path of paths ) {
+
+      await open ( path, config.app );
+
+    }
 
   } else {
 

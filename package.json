@@ -3,7 +3,7 @@
   "displayName": "Optimize Images",
   "description": "Optimize one or all the images in your project using your favorite app.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "main": "out/src/extension.js",
   "publisher": "fabiospampinato",
@@ -133,6 +133,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "open": "0.0.5",
+    "pify": "^3.0.0",
     "walker": "^1.0.7"
   },
   "devDependencies": {
