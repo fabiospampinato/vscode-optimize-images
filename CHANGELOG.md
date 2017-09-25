@@ -1,3 +1,6 @@
+### Version 1.0.3
+- Fixed a Windows incompatibility
+
 ### Version 1.0.2
 - Ensuring `open` is not skipped
 
