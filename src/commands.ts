@@ -26,7 +26,7 @@ async function optimize () {
 
       await new Promise ( resolve => {
 
-        const startingPath = path.join ( folder.uri.path, config.searchStartingPath ),
+        const startingPath = path.join ( folder.uri.fsPath, config.searchStartingPath ),
               maxDepth = Utils.path.getDepth ( startingPath ) + config.searchDepth;
 
         walker ( startingPath )
