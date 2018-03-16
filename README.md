@@ -1,4 +1,4 @@
-# VSC Optimize Images
+# Optimize Images
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-optimize-images/master/resources/logo-128x128.png" alt="Logo">
@@ -8,10 +8,10 @@ Optimize one or all the images in your project using your favorite app.
 
 ## Install
 
-Run the following in the command palette:
+Follow the instructions in the [Marketplace](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-optimize-images), or run the following in the command palette:
 
 ```shell
-ext install vscode-optimize-images
+ext install fabiospampinato.vscode-optimize-images
 ```
 
 ## Usage
