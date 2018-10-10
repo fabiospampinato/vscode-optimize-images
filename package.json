@@ -3,7 +3,7 @@
   "displayName": "Optimize Images",
   "description": "Optimize one or all the images in your project using your favorite app.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",
@@ -142,6 +142,7 @@
     "ts-loader": "^5.2.1",
     "tslint": "^4.4.2",
     "typescript": "~2.4.1",
-    "vscode": "^1.1.4"
+    "vscode": "^1.1.4",
+    "webpack": "^4.20.2"
   }
 }

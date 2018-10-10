@@ -1,3 +1,6 @@
+### Version 1.0.5
+- Bundling with webpack
+
 ### Version 1.0.4
 - Updated readme
 
