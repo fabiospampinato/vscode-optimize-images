@@ -54,6 +54,12 @@ _Contact me if you have an app to suggest for this section._
 
 ![Demo](resources/right_click.png)
 
+## Contributing
+
+If you found a problem, or have a feature request, please open an [issue](https://github.com/fabiospampinato/vscode-optimize-images/issues) about it.
+
+If you want to make a pull request you can debug the extension using [Debug Launcher](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-debug-launcher).
+
 ## License
 
 Icon: GPL v2 © [ImageOptim](https://github.com/ImageOptim/ImageOptim)
