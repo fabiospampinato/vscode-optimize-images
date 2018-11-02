@@ -1,3 +1,7 @@
+### Version 1.0.6
+- Outputting modern code (es2017, faster)
+- Using "Debug Launcher" for debugging
+
 ### Version 1.0.5
 - Bundling with webpack
 
