@@ -1,7 +1,7 @@
 # Optimize Images
 
 <p align="center">
-	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-optimize-images/master/resources/logo-128x128.png" alt="Logo">
+	<img src="https://raw.githubusercontent.com/fabiospampinato/vscode-optimize-images/master/resources/logo.png" width="128" alt="Logo">
 </p>
 
 Optimize one or all the images in your project using your favorite app.
