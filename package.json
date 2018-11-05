@@ -3,7 +3,7 @@
   "displayName": "Optimize Images",
   "description": "Optimize one or all the images in your project using your favorite app.",
   "icon": "resources/logo-128x128.png",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "out/extension.js",
   "publisher": "fabiospampinato",
@@ -34,6 +34,16 @@
           "type": "string",
           "description": "Name of the app to use for optimizating the images",
           "default": ""
+        },
+        "optimizeImages.appOptions": {
+          "type": "array",
+          "description": "Additional options for the app call\nPlaceholder {{filepath}} will be replaced with the file path of the current input file",
+          "default": []
+        },
+        "optimizeImages.appUseFilePathAsArgument": {
+          "type": "boolean",
+          "description": "Wether the current input file path should be used as argument for the app call",
+          "default": true
         },
         "optimizeImages.imageRegex": {
           "type": "string",
@@ -133,8 +143,7 @@
   ],
   "dependencies": {
     "lodash": "^4.17.4",
-    "open": "0.0.5",
-    "pify": "^3.0.0",
+    "opn": "^5.4.0",
     "walker": "^1.0.7"
   },
   "devDependencies": {

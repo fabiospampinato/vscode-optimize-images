@@ -2,9 +2,8 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import * as openPath from 'open';
+import * as opn from 'opn';
 import * as path from 'path';
-import * as pify from 'pify';
 import * as vscode from 'vscode';
 import * as walker from 'walker';
 import Config from './config';
@@ -69,28 +68,85 @@ function optimizeFile ( file ) {
 
 }
 
-async function optimizePaths ( paths ) {
+function optimizePaths ( paths ) {
 
   const config = Config.get ();
 
-  paths = _.castArray ( paths );
+  if ( !config.app ) {
 
-  if ( config.app ) {
+    vscode.window.showErrorMessage ( '[OptimizeImages] You need to provide an app name via the "optimizeImages.app" setting' );
 
-    const open = pify ( openPath );
+  } else if (
+    !config.appUseFilePathAsArgument &&
+    !config.appOptions.filter(option => option.includes('{{filepath}}')).length
+  ) {
 
-    for ( let path of paths ) {
-
-      await open ( path, config.app );
-
-    }
+    vscode.window.showErrorMessage( '[OptimizeImages] If you don\'t use the filepath as argument you have to specify an option which uses the {{filepath}} placeholder.' );
 
   } else {
+    paths = _.castArray ( paths );
 
-    vscode.window.showErrorMessage ( 'You need to provide an app name via the "optimizeImages.app" setting' );
+    vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: 'Optimize images',
+        cancellable: true
+      },
+      async ( progress, token ) => {
+
+        const processing = [];
+        const step = 100 / paths.length
+
+        token.onCancellationRequested(() => {
+
+          vscode.window.showInformationMessage ( '[OptimizeImages] Image optimization cancelled ' );
+
+        } );
+
+        for ( let path of paths ) {
+
+          const input = config.appUseFilePathAsArgument ? path : '';
+
+          processing.push(
+            await opn ( input, {
+                app: [
+                  config.app,
+                  ...config.appOptions.map (
+                    option => option.replace( '{{filepath}}', path )
+                  )
+                ]
+              } )
+              .then( () => {
+
+                progress.report( {
+                  increment: step,
+                  message: processing.length + ' / ' + paths.length + '\n' + path
+                } );
+
+                return path;
+
+              } )
+              .catch( err => {
+
+                vscode.window.showErrorMessage( '[OptimizeImages] Error while processing file: ' + path );
+
+              } )
+          );
+        }
+
+        return processing;
+
+      }
+    )
+    .then ( processed => {
+
+      vscode.window.showInformationMessage( '[OptimizeImages] Image optimization complete\nCheck the debug console for more information.' );
+
+      console.log ( `[OptimizeImages] The following images have been processed:\n${processed.join('\n')}` );
+
+    } );
 
   }
-
 }
 
 /* EXPORT */
