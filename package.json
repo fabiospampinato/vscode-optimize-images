@@ -37,13 +37,8 @@
         },
         "optimizeImages.appOptions": {
           "type": "array",
-          "description": "Additional options for the app call\nPlaceholder {{filepath}} will be replaced with the file path of the current input file",
+          "description": "An array of options to be passed to the app on execution.\nUse the placeholder '[filepath]' (without quotes) to insert the filepath to the currently processed file",
           "default": []
-        },
-        "optimizeImages.appUseFilePathAsArgument": {
-          "type": "boolean",
-          "description": "Wether the current input file path should be used as argument for the app call",
-          "default": true
         },
         "optimizeImages.imageRegex": {
           "type": "string",

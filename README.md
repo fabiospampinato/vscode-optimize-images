@@ -29,6 +29,7 @@ You can also right click a single image and only optimize that one.
 ```js
 {
   "optimizeImages.app": "", // Name of the app to use for optimizating the images
+  "optimizeImages.appOptions": [], // An array of options to be passed to the app on execution. Use the placeholder '[filepath]' (without quotes) to insert the filepath to the currently processed file
   "optimizeImages.imageRegex": ".*\\.(png|gif|jpe?g)$", // Regex used for matching images. Requires double escaping
   "optimizeImages.searchDepth": 10, // Maximum depth to look at when searching images
   "optimizeImages.searchStartingPath": ".", // Path relative to the root where to start searching images
@@ -48,7 +49,7 @@ _Contact me if you have an app to suggest for this section._
 
 #### Linux
 
-_Contact me if you have an app to suggest for this section._
+- [Trimage](https://trimage.org/): A cross-platform tool for losslessly optimizing PNG and JPG files.
 
 ## Demo
 
