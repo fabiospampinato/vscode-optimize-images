@@ -81,53 +81,51 @@ function optimizePaths ( paths ) {
 
     paths = _.castArray ( paths );
 
-    vscode.window.withProgress(
-      {
-        location: vscode.ProgressLocation.Notification,
-        title: 'Optimize images',
-        cancellable: true
-      },
-      async ( progress, token ) => {
+    const windowOpts = {
+      location: vscode.ProgressLocation.Notification,
+      title: 'Optimize images',
+      cancellable: true
+    };
 
-        const processed = [];
-        const increment = 100 / paths.length
+    vscode.window.withProgress( windowOpts, async ( progress, token ) => {
 
-        progress.report( { increment: 0 } );
+      const processed = [];
+      const increment = 100 / paths.length
 
-        token.onCancellationRequested(() => {
+      progress.report( { increment: 0 } );
 
-          vscode.window.showInformationMessage ( 'Image optimization cancelled ' );
+      token.onCancellationRequested(() => {
 
-        } );
+        vscode.window.showInformationMessage ( 'Image optimization cancelled ' );
 
-        for ( let path of paths ) {
+      } );
 
-          const input = useOptions ? '' : path;
+      for ( let path of paths ) {
 
-          try {
+        const input = useOptions ? '' : path;
 
-            await opn (input, { app: [ config.app, ...config.appOptions.map (
+        try {
 
-              option => option.replace( '[filepath]', path )
+          await opn (input, { app: [ config.app, ...config.appOptions.map (
 
-            ) ] } );
+            option => option.replace( '[filepath]', path )
 
-            processed.push(path);
+          ) ] } );
 
-            progress.report( { increment, message: `${processed.length} / ${paths.length}\n${path}` } );
+          processed.push(path);
 
-          } catch ( err ) {
+          progress.report( { increment, message: `${processed.length} / ${paths.length}\n${path}` } );
 
-            vscode.window.showErrorMessage( 'Error while processing file: ' + path );
+        } catch ( err ) {
 
-          }
+          vscode.window.showErrorMessage( 'Error while processing file: ' + path );
+
         }
-
-        return processed;
-
       }
-    )
-    .then ( processed => {
+
+      return processed;
+
+    } ).then ( processed => {
 
       vscode.window.showInformationMessage( 'Image optimization complete.' );
 
