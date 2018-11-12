@@ -71,19 +71,14 @@ function optimizeFile ( file ) {
 function optimizePaths ( paths ) {
 
   const config = Config.get ();
+  const useOptions = !!config.appOptions.find( option => option.includes( '[filepath]' ) );
 
   if ( !config.app ) {
 
-    vscode.window.showErrorMessage ( '[OptimizeImages] You need to provide an app name via the "optimizeImages.app" setting' );
-
-  } else if (
-    !config.appUseFilePathAsArgument &&
-    !config.appOptions.filter(option => option.includes('{{filepath}}')).length
-  ) {
-
-    vscode.window.showErrorMessage( '[OptimizeImages] If you don\'t use the filepath as argument you have to specify an option which uses the {{filepath}} placeholder.' );
+    vscode.window.showErrorMessage ( 'You need to provide an app name via the "optimizeImages.app" setting' );
 
   } else {
+
     paths = _.castArray ( paths );
 
     vscode.window.withProgress(
@@ -94,55 +89,49 @@ function optimizePaths ( paths ) {
       },
       async ( progress, token ) => {
 
-        const processing = [];
-        const step = 100 / paths.length
+        const processed = [];
+        const increment = 100 / paths.length
+
+        progress.report( { increment: 0 } );
 
         token.onCancellationRequested(() => {
 
-          vscode.window.showInformationMessage ( '[OptimizeImages] Image optimization cancelled ' );
+          vscode.window.showInformationMessage ( 'Image optimization cancelled ' );
 
         } );
 
         for ( let path of paths ) {
 
-          const input = config.appUseFilePathAsArgument ? path : '';
+          const input = useOptions ? '' : path;
 
-          processing.push(
-            await opn ( input, {
-                app: [
-                  config.app,
-                  ...config.appOptions.map (
-                    option => option.replace( '{{filepath}}', path )
-                  )
-                ]
-              } )
-              .then( () => {
+          try {
 
-                progress.report( {
-                  increment: step,
-                  message: processing.length + ' / ' + paths.length + '\n' + path
-                } );
+            await opn (input, { app: [ config.app, ...config.appOptions.map (
 
-                return path;
+              option => option.replace( '[filepath]', path )
 
-              } )
-              .catch( err => {
+            ) ] } );
 
-                vscode.window.showErrorMessage( '[OptimizeImages] Error while processing file: ' + path );
+            processed.push(path);
 
-              } )
-          );
+            progress.report( { increment, message: `${processed.length} / ${paths.length}\n${path}` } );
+
+          } catch ( err ) {
+
+            vscode.window.showErrorMessage( 'Error while processing file: ' + path );
+
+          }
         }
 
-        return processing;
+        return processed;
 
       }
     )
     .then ( processed => {
 
-      vscode.window.showInformationMessage( '[OptimizeImages] Image optimization complete\nCheck the debug console for more information.' );
+      vscode.window.showInformationMessage( 'Image optimization complete.' );
 
-      console.log ( `[OptimizeImages] The following images have been processed:\n${processed.join('\n')}` );
+      console.log ( `The following images have been processed:\n${processed.join('\n')}` );
 
     } );
 
