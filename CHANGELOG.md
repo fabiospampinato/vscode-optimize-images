@@ -1,3 +1,6 @@
+### Version 1.1.0
+- Added an `appOptions` option for better supporting CLI apps
+
 ### Version 1.0.7
 - Readme: using hi-res logo
 
