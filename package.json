@@ -35,6 +35,11 @@
           "description": "Name of the app to use for optimizating the images",
           "default": ""
         },
+        "optimizeImages.appOptions": {
+          "type": "array",
+          "description": "An array of options to be passed to the app on execution.\nUse the placeholder '[filepath]' (without quotes) to insert the filepath to the currently processed file",
+          "default": []
+        },
         "optimizeImages.imageRegex": {
           "type": "string",
           "description": "Regex used for matching images",
@@ -134,8 +139,7 @@
   "dependencies": {
     "@types/node": "^10.12.8",
     "lodash": "^4.17.4",
-    "open": "0.0.5",
-    "pify": "^3.0.0",
+    "opn": "^5.4.0",
     "walker": "^1.0.7"
   },
   "devDependencies": {

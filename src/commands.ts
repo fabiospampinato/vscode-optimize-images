@@ -2,9 +2,8 @@
 /* IMPORT */
 
 import * as _ from 'lodash';
-import * as openPath from 'open';
+import * as opn from 'opn';
 import * as path from 'path';
-import * as pify from 'pify';
 import * as vscode from 'vscode';
 import * as walker from 'walker';
 import Config from './config';
@@ -77,11 +76,21 @@ async function optimizePaths ( paths ) {
 
   if ( config.app ) {
 
-    const open = pify ( openPath );
+    const placeholderIndex = config.appOptions.indexOf ( '[filepath]' ),
+          hasPlaceholder = ( placeholderIndex >= 0 );
 
     for ( let path of paths ) {
 
-      await open ( path, config.app );
+      const input = hasPlaceholder ? '' : path,
+            options = [...config.appOptions];
+
+      if ( hasPlaceholder ) {
+
+        options.splice ( placeholderIndex, 1, path );
+
+      }
+
+      opn ( input, { app: [config.app, ...options] } );
 
     }
 
