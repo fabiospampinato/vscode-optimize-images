@@ -49,7 +49,7 @@ _Contact me if you have an app to suggest for this section._
 
 #### Linux
 
-- [Trimage](https://trimage.org/) *(Mac/Windows/Linux)*: lossless PNG and JPG image optimizer; image files are compressed on the highest available compression levels, and EXIF and other metadata is removed.
+- [Trimage](https://trimage.org/): lossless PNG and JPG image optimizer; image files are compressed on the highest available compression levels, and EXIF and other metadata is removed.
 
 ## Demo
 
