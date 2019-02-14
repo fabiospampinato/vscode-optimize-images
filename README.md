@@ -39,6 +39,12 @@ You can also right click a single image and only optimize that one.
 
 ## Recommended Apps
 
+#### Cross Platform 
+
+- [Trimage](https://trimage.org/) *(Mac/Windows/Linux)*: lossless PNG and JPG image optimizer; image files are compressed on the highest available compression levels, and EXIF and other metadata is removed.
+
+- [SVG Cleaner](https://github.com/RazrFalcon/svgcleaner-gui) *(Mac/Windows/Linux)*: lossless SVG image optimizer; unused and unnecessary data is removed.
+
 #### Mac
 
 - [ImageOptim](https://imageoptim.com/mac): Removes bloated metadata. Saves disk space & bandwidth by compressing images without losing quality.
