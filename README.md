@@ -45,7 +45,7 @@ You can also right click a single image and only optimize that one.
 
 #### Windows
 
-_Contact me if you have an app to suggest for this section._
+- [IOptimizer](https://github.com/ymg2006/Image-Optimizer): both lossless and lossy  png, jp?g, gif image optimizer. Images are compressed on the highest available compression levels. Realeases and settings and how to's are included in readme.
 
 #### Linux
 
