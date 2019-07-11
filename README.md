@@ -45,7 +45,7 @@ You can also right click a single image and only optimize that one.
 
 #### Windows
 
-_Contact me if you have an app to suggest for this section._
+- [IOptimizer](https://github.com/ymg2006/Image-Optimizer): Both lossless and lossy  PNG, JPG and GIF image optimizer. Usage instructions included in its readme.
 
 #### Linux
 
@@ -64,6 +64,5 @@ If you want to make a pull request you can debug the extension using [Debug Laun
 ## License
 
 Icon: GPL v2 © [ImageOptim](https://github.com/ImageOptim/ImageOptim)
-
 
 Extension: MIT © Fabio Spampinato
