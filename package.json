@@ -140,6 +140,7 @@
     "@types/node": "^10.12.8",
     "lodash": "^4.17.4",
     "opn": "^5.4.0",
+    "vscode-beggar": "^1.0.0",
     "walker": "^1.0.7"
   },
   "devDependencies": {
