@@ -1,3 +1,16 @@
+### Version 1.1.1
+- Update README.md
+- Update README.md
+- Update README.md
+- Readme: mentioning Trimage
+- Update README.md
+- Update README.md
+- Update README.md
+- Added IOptimizer to the list of recommended apps for Windows
+- Update .github/FUNDING.yml
+- Deleted repo-level github funding.yml
+- Added a dialog announcing the fundraising
+
 ### Version 1.1.0
 - Added an `appOptions` option for better supporting CLI apps
 
