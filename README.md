@@ -50,6 +50,7 @@ You can also right click a single image and only optimize that one.
 #### Linux
 
 - [Trimage](https://trimage.org): Lossless PNG and JPG image optimizer. Images are compressed on the highest available compression levels, and EXIF and other metadata is removed.
+- [imgp](https://github.com/jarun/imgp): One click image optimization. See [this post](https://roneo.org/en/vscode-optimize-images-with-imgp) for the configuration.
 
 ## Demo
 
